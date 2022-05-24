@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  app-nest:
+      container_name: app-nest
+      build:
+        context: .
+        dockerfile: Dockerfile
+      entrypoint: [ "/bin/sh", "-c" ]
+      command:
+        - |
+          npm run start:debug
+      ports:
+        - "${SERVER_PORT}:${SERVER_PORT}"
+        - 9229:9229
+      depends_on:
+        - app-dynamodb
+      env_file:
+        - .env
+      volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules
+      restart: unless-stopped
+      networks:
+        - demo_dynamodb_nest_network
+  app-dynamodb:
+    image:  amazon/dynamodb-local
+    container_name: app-dynamodb
+    hostname: dynamodb
+    restart: always
+    networks:
+      - demo_dynamodb_nest_network
+    volumes:
+      -  ./my-dynamodb-data:/home/dynamodblocal/data
+    ports:
+      - 8000:8000
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+
+networks:
+  demo_dynamodb_nest_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.70.0.0/16
