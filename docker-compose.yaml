@@ -32,7 +32,7 @@ services:
     volumes:
       -  ./my-dynamodb-data:/home/dynamodblocal/data
     ports:
-      - 8000:8000
+      - "${DYNAMODB_LOCAL_PORT}:${DYNAMODB_LOCAL_PORT}"
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
 
 networks:
