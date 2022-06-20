@@ -1,11 +1,13 @@
 import { GetCommand, GetCommandInput } from '@aws-sdk/lib-dynamodb';
+import { ApplicationEnum } from 'src/common/constants/application.enum';
+import { DynamoDBUserEnum } from 'src/users/constants/dynamodb.user.enum';
 import client from '../../../database/dynamoClient';
 
 const getUser = async (userId: string) => {
   const getUserParams: GetCommandInput = {
-    TableName: 'Users',
+    TableName: ApplicationEnum.DATABASE_TABLE_NAME,
     Key: {
-      PK: 'USERS',
+      PK: DynamoDBUserEnum.PK,
       SK: userId,
     },
   };

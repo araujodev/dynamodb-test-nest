@@ -1,8 +1,8 @@
-import { IBaseModel } from '../models/IBaseModel';
+import { BaseModel } from '../models/BaseModel';
 
 export interface IRepository {
-  getOne(id: string): Promise<IBaseModel>;
-  save(data: IBaseModel): Promise<IBaseModel>;
-  getAll(): Promise<IBaseModel[]>;
-  delete(id: string): Promise<boolean>;
+  getOne(id: string): Promise<BaseModel>;
+  save(data: BaseModel): Promise<BaseModel>;
+  getAll(paramterFilter?: string): Promise<BaseModel[]>;
+  delete(id: string, ownerId?: string): Promise<boolean>;
 }

@@ -1,7 +1,6 @@
-import { IBaseModel } from 'src/common/models/IBaseModel';
+import { BaseModel } from 'src/common/models/BaseModel';
 
-export class User implements IBaseModel {
-  id: string;
+export class User extends BaseModel {
   name: string;
   lastName: string;
   age: number;

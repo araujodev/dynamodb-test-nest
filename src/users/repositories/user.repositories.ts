@@ -1,12 +1,12 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import putUser from './database/putUser';
-import { User } from '../models/user.model';
-import getUser from './database/getUser';
-import buildOneUser from './helpers/user.build';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { IRepository } from 'src/common/repositories/IRepository';
-import getAllUsers from './database/getAllUsers';
-import buildUsers from './helpers/users.collection.build';
+import { User } from '../models/user.model';
 import deleteUser from './database/deleteUser';
+import getAllUsers from './database/getAllUsers';
+import getUser from './database/getUser';
+import putUser from './database/putUser';
+import buildOneUser from './helpers/user.build';
+import buildUsers from './helpers/users.collection.build';
 
 @Injectable()
 export class UserRepository implements IRepository {

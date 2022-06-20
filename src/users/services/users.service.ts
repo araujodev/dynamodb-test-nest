@@ -17,6 +17,7 @@ export class UsersService {
 
   async createUser(userData: User): Promise<User> {
     userData.id = uuid();
+    userData.createdAt = new Date();
     return await this.userRepository.save(userData);
   }
 
