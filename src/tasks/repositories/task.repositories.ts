@@ -51,8 +51,6 @@ export class TaskRepository implements IRepository {
       userId,
     );
 
-    console.log(responseTasks.Items);
-
     if (responseTasks.$metadata.httpStatusCode !== HttpStatus.OK) {
       return [];
     }
